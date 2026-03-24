@@ -2,15 +2,15 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFrameworks>$(PDFsharpTargetFrameworks_NewExe)</TargetFrameworks>
     <DefineConstants>CORE</DefineConstants>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PDFsharp" />
-    <PackageReference Include="PDFsharp-MigraDoc" />
+    <PackageReference Include="$(PDFsharp_PS_PackageName)" />
+    <PackageReference Include="$(PDFsharp_PSMD_PackageName)" />
   </ItemGroup>
 
 </Project>

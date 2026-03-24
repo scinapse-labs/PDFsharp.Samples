@@ -1,6 +1,9 @@
 ﻿<Project>
 
   <PropertyGroup>
+    <!-- Define this to use DEBUG build NuGet packages built locally. -->
+    <PDFsharp_NuGetBuildTag>-DEBUG</PDFsharp_NuGetBuildTag>
+
     <!--<PDFsharp_PackageVersion>6.2.0-my-branch.123</PDFsharp_PackageVersion>-->
     <PDFsharp_PackageVersion>Put your local version number here</PDFsharp_PackageVersion>
   </PropertyGroup>

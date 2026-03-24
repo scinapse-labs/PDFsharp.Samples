@@ -33,16 +33,25 @@ namespace HelloMigraDoc
             paragraph = section.AddParagraph("Rendering date: ");
             paragraph.AddDateField();
 
+#if true
+            section.AddParagraph($"Version: {PdfSharp.Internal.SemVersionInformation.Version}");
+            section.AddParagraph($"Date: {PdfSharp.Internal.SemVersionInformation.CommitDate}");
+            section.AddParagraph($"Branch: {PdfSharp.Internal.SemVersionInformation.BranchName}");
+            section.AddParagraph($"Build: {PdfSharp.Capabilities.Build.BuildName}");
+            section.AddParagraph($"Framework: {PdfSharp.Capabilities.Build.Framework}");
+#else
+            // Old code from PDFsharp 6.x.
             section.AddParagraph($"Version: {MigraDocRenderingBuildInformation.GitSemVer}");
             section.AddParagraph($"Branch: {MigraDocRenderingBuildInformation.BranchName}");
             section.AddParagraph($"Assembly: {MigraDocRenderingBuildInformation.AssemblyTitle}");
-            
+
             paragraph = section.AddParagraph("Platform: ");
             var platform = MigraDocRenderingBuildInformation.TargetPlatform;
             if (String.IsNullOrEmpty(platform))
                 paragraph.AddFormattedText("(none)", TextFormat.Italic);
             else
                 paragraph.AddText(platform);
+#endif
         }
     }
 }

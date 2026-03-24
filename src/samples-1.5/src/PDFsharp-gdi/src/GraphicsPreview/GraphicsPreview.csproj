@@ -1,9 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <PropertyGroup Condition="'$(PDFsharpBuildFewerFrameworks)'=='true'">
+    <IsProjectBuildable>false</IsProjectBuildable>
+  </PropertyGroup>
+
+  <Target Name="CheckIfBuildable" BeforeTargets="BeforeBuild">
+    <Message Text="Skipping build for $(MSBuildProjectName)" Importance="High" Condition="'$(IsProjectBuildable)' == 'false'" />
+    <Error Text="Skipping build. Project does not support .NET 6/8 yet." Condition="'$(IsProjectBuildable)' == 'false'" />
+  </Target>
+
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <!--<TargetFrameworks>net8.0-windows;net462</TargetFrameworks>-->
-    <TargetFrameworks>net462</TargetFrameworks>
+    <!--<TargetFrameworks>$(PDFsharpTargetFrameworks_Windows)</TargetFrameworks>-->
+    <TargetFrameworks>net462</TargetFrameworks> 
     <UseWindowsForms>true</UseWindowsForms>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
     <DefineConstants>GDI</DefineConstants>
@@ -11,8 +20,8 @@
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="PDFsharp-gdi" />
+  <ItemGroup Condition="'$(PDFsharpBuildFewerFrameworks)'!='true'">
+    <PackageReference Include="$(PDFsharp_PSGDI_PackageName)" />
     <PackageReference Include="System.Resources.Extensions" />
   </ItemGroup>
 

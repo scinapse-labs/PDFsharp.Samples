@@ -20,6 +20,7 @@ node_modules/
 debugSettings.json
 project.lock.json
 [Ll]ocal.[Pp]ackages.props
+[Ll]ocal.[Bb]uild.props
 *.log
 *.user
 *.suo

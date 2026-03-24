@@ -39,6 +39,7 @@ namespace HelloMigraDoc
                     }
                 }
             };
+            pdfRenderer.PdfDocument.Options.CompressContentStreams = true;
 
             // Layout and render document to PDF.
             pdfRenderer.RenderDocument();

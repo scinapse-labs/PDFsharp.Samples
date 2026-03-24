@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFrameworks>$(PDFsharpTargetFrameworks_Windows)</TargetFrameworks>
     <OutputType>WinExe</OutputType>
     <DefineConstants>WPF</DefineConstants>
     <UseWPF>true</UseWPF>
@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PDFsharp-wpf" />
-    <PackageReference Include="PDFsharp-MigraDoc-WPF" />
+    <PackageReference Include="$(PDFsharp_PSWPF_PackageName)" />
+    <PackageReference Include="$(PDFsharp_PSMDWPF_PackageName)" />
   </ItemGroup>
 
   <ItemGroup>

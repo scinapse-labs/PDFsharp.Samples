@@ -3,23 +3,31 @@
   <Import Condition="Exists('Local.Packages.props')" Project="$([MSBuild]::GetPathOfFileAbove('Local.Packages.props', '$(MSBuildThisFileDirectory)'))" />
 
   <PropertyGroup>
-    <PDFsharp_PackageVersion Condition=" '$(PDFsharp_PackageVersion)'=='' ">6.2.3</PDFsharp_PackageVersion>
-    <Cryptography_PackageVersion>8.0.1</Cryptography_PackageVersion>
+    <PDFsharp_PackageVersion Condition=" '$(PDFsharp_PackageVersion)'=='' ">7.0.0-preview-1</PDFsharp_PackageVersion>
+    <Cryptography_PackageVersion>10.0.5</Cryptography_PackageVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PDFsharp_PS_PackageName>PdfSharp$(PDFsharp_NuGetBuildTag)</PDFsharp_PS_PackageName>
+    <PDFsharp_PSGDI_PackageName>PdfSharp-GDI$(PDFsharp_NuGetBuildTag)</PDFsharp_PSGDI_PackageName>
+    <PDFsharp_PSWPF_PackageName>PdfSharp-WPF$(PDFsharp_NuGetBuildTag)</PDFsharp_PSWPF_PackageName>
+    <PDFsharp_PSMD_PackageName>PdfSharp-MigraDoc$(PDFsharp_NuGetBuildTag)</PDFsharp_PSMD_PackageName>
+    <PDFsharp_PSMDGDI_PackageName>PdfSharp-MigraDoc-GDI$(PDFsharp_NuGetBuildTag)</PDFsharp_PSMDGDI_PackageName>
+    <PDFsharp_PSMDWPF_PackageName>PdfSharp-MigraDoc-WPF$(PDFsharp_NuGetBuildTag)</PDFsharp_PSMDWPF_PackageName>
   </PropertyGroup>
 
   <ItemGroup>
-
     <!-- PDFsharp packages -->
-    <PackageVersion Include="PDFsharp" Version="$(PDFsharp_PackageVersion)" />
-    <PackageVersion Include="PDFsharp-GDI" Version="$(PDFsharp_PackageVersion)" />
-    <PackageVersion Include="PDFsharp-WPF" Version="$(PDFsharp_PackageVersion)" />
-    <PackageVersion Include="PDFsharp-MigraDoc" Version="$(PDFsharp_PackageVersion)" />
-    <PackageVersion Include="PDFsharp-MigraDoc-GDI" Version="$(PDFsharp_PackageVersion)" />
-    <PackageVersion Include="PDFsharp-MigraDoc-WPF" Version="$(PDFsharp_PackageVersion)" />
+    <PackageVersion Include="$(PDFsharp_PS_PackageName)" Version="$(PDFsharp_PackageVersion)" />
+    <PackageVersion Include="$(PDFsharp_PSGDI_PackageName)" Version="$(PDFsharp_PackageVersion)" />
+    <PackageVersion Include="$(PDFsharp_PSWPF_PackageName)" Version="$(PDFsharp_PackageVersion)" />
+    <PackageVersion Include="$(PDFsharp_PSMD_PackageName)" Version="$(PDFsharp_PackageVersion)" />
+    <PackageVersion Include="$(PDFsharp_PSMDGDI_PackageName)" Version="$(PDFsharp_PackageVersion)" />
+    <PackageVersion Include="$(PDFsharp_PSMDWPF_PackageName)" Version="$(PDFsharp_PackageVersion)" />
 
     <!-- Digital signature packages used by PdfSharp.Cryptography and for testing -->
     <PackageVersion Include="System.Security.Cryptography.Pkcs" Version="$(Cryptography_PackageVersion)" />
-    <PackageVersion Include="BouncyCastle.Cryptography" Version="2.5.0" />
+    <PackageVersion Include="BouncyCastle.Cryptography" Version="2.6.2" />
 
     <!-- GitVersion used for Semantic Versioning -->
     <PackageVersion Include="GitVersion.MsBuild" Version="5.12.0" />

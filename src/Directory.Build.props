@@ -10,13 +10,53 @@
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
   </PropertyGroup>
 
+  <!-- Allow local settings to overwrite global settings. -->
+  <Import Condition="Exists('Local.Build.props')" Project="$([MSBuild]::GetPathOfFileAbove('Local.Build.props', '$(MSBuildThisFileDirectory)'))" />
+
+  <PropertyGroup>
+    <!-- Frameworks for DLLs and EXE -->
+    <!-- 8, 9, 4.6.2 -->
+    <!--<PDFsharpTargetFrameworks_Library>net8.0;net9.0;netstandard2.0</PDFsharpTargetFrameworks_Library>
+    <PDFsharpTargetFrameworks_Exe>net8.0;net9.0;net462</PDFsharpTargetFrameworks_Exe>
+    <PDFsharpTargetFrameworks_Windows>net8.0-windows;net9.0-windows;net462</PDFsharpTargetFrameworks_Windows>
+    <PDFsharpTargetFrameworks_NewExe>net8.0;net9.0</PDFsharpTargetFrameworks_NewExe> --><!-- New projects that do not work with .NET Framework. -->
+    <!-- 8, 9, 10, 4.6.2 -->
+    <PDFsharpTargetFrameworks_Library>net8.0;net9.0;net10.0;netstandard2.0</PDFsharpTargetFrameworks_Library>
+    <PDFsharpTargetFrameworks_Exe>net8.0;net9.0;net10.0;net462</PDFsharpTargetFrameworks_Exe>
+    <PDFsharpTargetFrameworks_Windows>net8.0-windows;net9.0-windows;net10.0-windows;net462</PDFsharpTargetFrameworks_Windows>
+    <PDFsharpTargetFrameworks_NewExe>net8.0;net9.0;net10.0</PDFsharpTargetFrameworks_NewExe>
+
+    <!-- Frameworks for test projects and EXE - Not yet used -->
+    <!-- 8, 9, 4.6.2 -->
+    <!--<PDFsharpTargetFrameworks_Tests_Exe>net8.0;net9.0;net462</PDFsharpTargetFrameworks_Tests_Exe>
+    <PDFsharpTargetFrameworks_Tests_Windows>net8.0-windows;net9.0-windows;net462</PDFsharpTargetFrameworks_Tests_Windows>--> 
+    <!-- 8, 9, 10, 4.6.2 -->
+    <PDFsharpTargetFrameworks_Tests_Exe>net8.0;net9.0;net10.0;net462</PDFsharpTargetFrameworks_Tests_Exe>
+    <PDFsharpTargetFrameworks_Tests_Windows>net8.0-windows;net9.0-windows;net10.0-windows;net462</PDFsharpTargetFrameworks_Tests_Windows>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(PDFsharpBuildFewerFrameworks)'=='true'">
+    <DefineConstants>$(DefineConstants);FEWER_FRAMEWORKS</DefineConstants>
+
+    <!-- Frameworks for DLLs and EXE -->
+    <PDFsharpTargetFrameworks_Library>net8.0</PDFsharpTargetFrameworks_Library>
+    <PDFsharpTargetFrameworks_Exe>net8.0</PDFsharpTargetFrameworks_Exe>
+    <PDFsharpTargetFrameworks_Windows>net8.0-windows</PDFsharpTargetFrameworks_Windows>
+    <PDFsharpTargetFrameworks_NewExe>net8.0</PDFsharpTargetFrameworks_NewExe>
+
+    <!-- Frameworks for test projects and EXE -->
+    <PDFsharpTargetFrameworks_Tests_Library>net8.0</PDFsharpTargetFrameworks_Tests_Library>
+    <PDFsharpTargetFrameworks_Tests_Exe>net8.0</PDFsharpTargetFrameworks_Tests_Exe>
+    <PDFsharpTargetFrameworks_Tests_Windows>net8.0-windows</PDFsharpTargetFrameworks_Tests_Windows>
+  </PropertyGroup>
+
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
     <DefaultItemExcludes>*.ncrunchproject;*.DotSettings</DefaultItemExcludes>
 
     <Product>PDFsharp</Product>
     <Company>empira Software</Company>
-    <Copyright>© 2025 empira</Copyright>
+    <Copyright>© 2026 empira</Copyright>
     <Authors>PDFsharp team</Authors>
   </PropertyGroup>
 

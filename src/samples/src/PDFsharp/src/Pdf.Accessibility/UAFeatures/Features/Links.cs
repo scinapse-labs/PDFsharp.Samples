@@ -42,7 +42,7 @@ namespace UAFeatures.Features
                 var rect = new PdfRectangle(gfx.Transformer.WorldToDefaultPage(new XRect(new XPoint(50, 90), new XPoint(205, 105))));
                 
                 // Create a LinkAnnotation referencing to page 2.
-                var link = PdfLinkAnnotation.CreateDocumentLink(rect, 2);
+                var link = PdfLinkAnnotation.CreateDocumentLink(gfx.PdfPage!, rect, 2);
 
                 // Create a new Link structure element with the LinkAnnotation and the alternative text passed as parameters.
                 sb.BeginElement(link, "Link to page 2");
@@ -65,7 +65,7 @@ namespace UAFeatures.Features
                 var rect = new PdfRectangle(gfx.Transformer.WorldToDefaultPage(new XRect(new XPoint(50, 90), new XPoint(235, 105))));
                 
                 // Create a LinkAnnotation referencing to the empira website.
-                var link = PdfLinkAnnotation.CreateWebLink(rect, "http://www.empira.de");
+                var link = PdfLinkAnnotation.CreateWebLink(gfx.PdfPage!, rect, "http://www.empira.de");
 
                 // Create a new Link structure element with the LinkAnnotation and the alternative text passed as parameters.
                 sb.BeginElement(link, "Link to empira website");

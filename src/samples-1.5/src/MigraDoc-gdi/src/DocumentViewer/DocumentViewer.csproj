@@ -1,7 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <PropertyGroup Condition="'$(PDFsharpBuildFewerFrameworks)'=='true'">
+    <IsProjectBuildable>false</IsProjectBuildable>
+  </PropertyGroup>
+
+  <Target Name="CheckIfBuildable" BeforeTargets="BeforeBuild">
+    <Message Text="Skipping build for $(MSBuildProjectName)" Importance="High" Condition="'$(IsProjectBuildable)' == 'false'" />
+    <Error Text="Skipping build. Project does not support .NET 6/8 yet." Condition="'$(IsProjectBuildable)' == 'false'" />
+  </Target>
+
   <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFrameworks>$(PDFsharpTargetFrameworks_Windows)</TargetFrameworks>
     <OutputType>WinExe</OutputType>
     <DefineConstants>GDI</DefineConstants>
     <UseWindowsForms>true</UseWindowsForms>
@@ -20,9 +29,9 @@
     <Compile Include="..\..\..\..\..\samples\src\MigraDoc\src\HelloMigraDoc\Tables.cs" Link="HelloMigraDoc\Tables.cs" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="PDFsharp-gdi" />
-    <PackageReference Include="PDFsharp-MigraDoc-GDI" />
+  <ItemGroup Condition="'$(PDFsharpBuildFewerFrameworks)'!='true'">
+    <PackageReference Include="$(PDFsharp_PSGDI_PackageName)" />
+    <PackageReference Include="$(PDFsharp_PSMDGDI_PackageName)" />
   </ItemGroup>
 
   <ItemGroup>

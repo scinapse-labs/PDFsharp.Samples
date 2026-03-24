@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <!-- Building fewer frameworks during development speeds up build and test cycles. -->
+    <PDFsharpBuildFewerFrameworks>true</PDFsharpBuildFewerFrameworks>
+  </PropertyGroup>
+</Project>

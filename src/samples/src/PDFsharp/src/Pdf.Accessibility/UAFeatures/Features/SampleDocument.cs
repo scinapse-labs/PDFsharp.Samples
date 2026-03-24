@@ -172,7 +172,7 @@ namespace UAFeatures.Features
                     var rect = new PdfRectangle(gfx.Transformer.WorldToDefaultPage(new XRect(50, 190, 480, 25)));
 
                     // Create a LinkAnnotation referencing to page 3.
-                    var link = PdfLinkAnnotation.CreateDocumentLink(rect, 3);
+                    var link = PdfLinkAnnotation.CreateDocumentLink(gfx.PdfPage!, rect, 3);
 
                     // Create a new Link structure element with the LinkAnnotation and the alternative text passed as parameters.
                     sb.BeginElement(link, "Link to Text Samples chapter");
@@ -196,7 +196,7 @@ namespace UAFeatures.Features
                     var rect = new PdfRectangle(gfx.Transformer.WorldToDefaultPage(new XRect(50, 220, 480, 25)));
 
                     // Create a LinkAnnotation referencing to page 5.
-                    var link = PdfLinkAnnotation.CreateDocumentLink(rect, 5);
+                    var link = PdfLinkAnnotation.CreateDocumentLink(gfx.PdfPage!, rect, 5);
 
                     // Create a new Link structure element with the LinkAnnotation and the alternative text passed as parameters.
                     sb.BeginElement(link, "Link to List Samples chapter");
@@ -220,7 +220,7 @@ namespace UAFeatures.Features
                     var rect = new PdfRectangle(gfx.Transformer.WorldToDefaultPage(new XRect(50, 250, 480, 25)));
 
                     // Create a LinkAnnotation referencing to page 6.
-                    var link = PdfLinkAnnotation.CreateDocumentLink(rect, 6);
+                    var link = PdfLinkAnnotation.CreateDocumentLink(gfx.PdfPage!, rect, 6);
 
                     // Create a new Link structure element with the LinkAnnotation and the alternative text passed as parameters.
                     sb.BeginElement(link, "Link to Table Samples chapter");
@@ -512,7 +512,7 @@ namespace UAFeatures.Features
                     var rect = new PdfRectangle(gfx.Transformer.WorldToDefaultPage(new XRect(new XPoint(70, 490), new XPoint(225, 505))));
 
                     // Create a LinkAnnotation referencing to the empira website.
-                    var link = PdfLinkAnnotation.CreateWebLink(rect, "http://www.empira.de");
+                    var link = PdfLinkAnnotation.CreateWebLink(gfx.PdfPage!, rect, "http://www.empira.de");
 
                     // Create a new Link structure element with the LinkAnnotation and the alternative text passed as parameters.
                     sb.BeginElement(link, "Link to empira website");

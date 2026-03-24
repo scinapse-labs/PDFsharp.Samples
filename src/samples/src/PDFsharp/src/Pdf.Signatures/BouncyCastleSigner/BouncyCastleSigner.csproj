@@ -2,12 +2,12 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net8.0;net462</TargetFrameworks>
+    <TargetFrameworks>$(PDFsharpTargetFrameworks_Exe)</TargetFrameworks>
     <DefineConstants>CORE</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PDFsharp" />
+    <PackageReference Include="$(PDFsharp_PS_PackageName)" />
     <!-- Unsure WHY we need this reference. Without this, project compiles, but BouncyCastleSigner crashs. 
          The BouncyCastle.Cryptography.dll was not in the bin folder. -->
     <PackageReference Include="BouncyCastle.Cryptography" />

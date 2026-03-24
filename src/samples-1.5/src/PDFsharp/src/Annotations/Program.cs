@@ -35,12 +35,12 @@ namespace Annotations
             var gfx = XGraphics.FromPdfPage(page);
 
             // Create a PDF text annotation.
-            var textAnnot = new PdfTextAnnotation
+            var textAnnot = new PdfTextAnnotation(document)
             {
                 Title = "This is the title",
                 Subject = "This is the subject",
                 Contents = "This is the contents of the annotation.\rThis is the 2nd line.",
-                Icon = PdfTextAnnotationIcon.Note
+                Icon = PdfTextAnnotationIcons.Note
             };
 
             gfx.DrawString("The first text annotation", font, XBrushes.Black, 30, 50, XStringFormats.Default);
@@ -54,12 +54,12 @@ namespace Annotations
             page.Annotations.Add(textAnnot);
 
             // Create another PDF text annotation which is open and transparent.
-            textAnnot = new PdfTextAnnotation
+            textAnnot = new PdfTextAnnotation(document)
             {
                 Title = "Annotation 2 (title)",
                 Subject = "Annotation 2 (subject)",
                 Contents = "This is the contents of the 2nd annotation.",
-                Icon = PdfTextAnnotationIcon.Help,
+                Icon = PdfTextAnnotationIcons.Help,
                 Color = XColors.LimeGreen,
                 Opacity = 0.5,
                 Open = true
@@ -76,9 +76,9 @@ namespace Annotations
 
             // Create a so-called rubber stamp annotation. I'm not sure if it is useful, but at least
             // it looks impressive...
-            var rsAnnot = new PdfRubberStampAnnotation
+            var rsAnnot = new PdfStampAnnotation(document)
             {
-                Icon = PdfRubberStampAnnotationIcon.TopSecret,
+                Icon = PdfStampAnnotationIcons.TopSecret,
                 Flags = PdfAnnotationFlags.ReadOnly
             };
 
